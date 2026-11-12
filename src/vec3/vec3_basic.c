@@ -23,7 +23,7 @@ t_vec3	vec_sub(t_vec3 a, t_vec3 b)
 	return (vec_new(a.x - b.x, a.y - b.y, a.z - b.z));
 }
 
-/* Multiply every component by s (changes length, not direction) */
+/* Multiply every component by s: stretches; negative s flips direction */
 t_vec3	vec_scale(t_vec3 v, double s)
 {
 	return (vec_new(v.x * s, v.y * s, v.z * s));
