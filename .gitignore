@@ -1,0 +1,3 @@
+*.o
+miniRT
+test_vec3
