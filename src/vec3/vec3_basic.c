@@ -29,7 +29,7 @@ t_vec3	vec_scale(t_vec3 v, double s)
 	return (vec_new(v.x * s, v.y * s, v.z * s));
 }
 
-/* Dot product: 1 same direction, 0 perpendicular, -1 opposite */
+/* Dot product; for unit vectors: 1 same dir, 0 perpendicular, -1 opposite */
 double	vec_dot(t_vec3 a, t_vec3 b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
