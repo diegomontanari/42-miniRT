@@ -8,6 +8,7 @@ t_vec3	vec_cross(t_vec3 a, t_vec3 b)
 			a.x * b.y - a.y * b.x));
 }
 
+/* Length of the vector: sqrt(v . v) */
 double	vec_len(t_vec3 v)
 {
 	return (sqrt(vec_dot(v, v)));
