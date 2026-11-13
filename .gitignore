@@ -1,3 +1,7 @@
 *.o
 miniRT
 test_vec3
+*.a
+minilibx-linux/Makefile.gen
+minilibx-linux/test/Makefile.gen
+minilibx-linux/test/mlx-test
