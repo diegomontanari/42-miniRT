@@ -45,6 +45,27 @@ static size_t	get_word(const char *s, char c)
 	return (ret);
 }
 
+/* On a failed malloc: free the n words already copied and the array */
+static char	**free_words(char **ret, size_t n)
+{
+	while (n > 0)
+		free(ret[--n]);
+	free(ret);
+	return (0);
+}
+
+/* Length of the word starting at s (0 if s is on a separator) */
+static size_t	word_len(const char *s, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	return (len);
+}
+
+/* Copy each word; on a failed malloc free everything and return NULL */
 char	**ft_split(const char *s, char c)
 {
 	char	**ret;
@@ -59,15 +80,16 @@ char	**ft_split(const char *s, char c)
 		return (0);
 	while (*s)
 	{
-		if (*s != c)
+		len = word_len(s, c);
+		if (len > 0)
 		{
-			len = 0;
-			while (*s && *s != c && ++len)
-				++s;
-			ret[i++] = ft_substr(s - len, 0, len);
+			ret[i] = ft_substr(s, 0, len);
+			if (!ret[i++])
+				return (free_words(ret, i - 1));
 		}
-		else
-			++s;
+		s += len;
+		if (*s)
+			s++;
 	}
 	ret[i] = 0;
 	return (ret);
