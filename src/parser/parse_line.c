@@ -9,20 +9,20 @@ static bool	mark_once(int *seen, int bit)
 	return (true);
 }
 
-/* Choose the parser from the first word of the line */
+/* Choose the parser from the first word; n = len + 1 also compares '\0' */
 bool	parse_line(char **words, t_scene *scene, int *seen)
 {
-	if (ft_strcmp(words[0], "A") == 0)
+	if (ft_strncmp(words[0], "A", 2) == 0)
 		return (mark_once(seen, SEEN_A) && parse_ambient(words, scene));
-	if (ft_strcmp(words[0], "C") == 0)
+	if (ft_strncmp(words[0], "C", 2) == 0)
 		return (mark_once(seen, SEEN_C) && parse_camera(words, scene));
-	if (ft_strcmp(words[0], "L") == 0)
+	if (ft_strncmp(words[0], "L", 2) == 0)
 		return (mark_once(seen, SEEN_L) && parse_light(words, scene));
-	if (ft_strcmp(words[0], "sp") == 0)
+	if (ft_strncmp(words[0], "sp", 3) == 0)
 		return (parse_sphere(words, scene));
-	if (ft_strcmp(words[0], "pl") == 0)
+	if (ft_strncmp(words[0], "pl", 3) == 0)
 		return (parse_plane(words, scene));
-	if (ft_strcmp(words[0], "cy") == 0)
+	if (ft_strncmp(words[0], "cy", 3) == 0)
 		return (parse_cylinder(words, scene));
 	return (parse_error("unknown element: use A, C, L, sp, pl or cy"));
 }

@@ -4,6 +4,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include "libft.h"
 
 /* Minimum t accepted for a hit: avoids hitting the surface we start on */
 # define EPSILON 0.0001
@@ -116,13 +117,6 @@ bool		init_test_scene(t_scene *scene);
 /* Debug output of a whole scene: print_scene.c */
 void		print_scene(t_scene *scene);
 
-/* String helpers (no libft): str_utils.c, split.c */
-size_t		ft_strlen(const char *s);
-int			ft_strcmp(const char *a, const char *b);
-bool		is_sep(char c, const char *seps);
-char		**ft_split(const char *s, const char *seps);
-void		free_split(char **words);
-
 /* Numbers: ft_atof.c */
 const char	*read_number(const char *s, double *out);
 bool		ft_atof(const char *s, double *out);
@@ -133,12 +127,13 @@ bool		parse_vec3(const char *s, t_vec3 *out);
 bool		parse_dir(const char *s, t_vec3 *out);
 bool		parse_color(const char *s, t_vec3 *out);
 
-/* Parser: read_file.c, parse_file.c, parse_line.c */
+/* Parser: read_file.c, parse_file.c, parse_line.c, parse_utils.c */
 char		*read_file(const char *path);
 bool		parse_file(const char *path, t_scene *scene);
 bool		parse_line(char **words, t_scene *scene, int *seen);
-bool		parse_error(const char *msg);
+bool		parse_error(char *msg);
 int			word_count(char **words);
+void		free_split(char **words);
 
 /* One function per line type: parse_elements.c, parse_objects.c */
 bool		parse_ambient(char **w, t_scene *scene);

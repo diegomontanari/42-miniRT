@@ -6,7 +6,7 @@
 /* Append the digits at *s to *value (as an integer), counting them */
 static void	read_digits(const char **s, double *value, int *count)
 {
-	while (**s >= '0' && **s <= '9')
+	while (ft_isdigit(**s))
 	{
 		*value = *value * 10 + (**s - '0');
 		(*count)++;
