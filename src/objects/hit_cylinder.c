@@ -15,12 +15,16 @@ static t_vec3	remove_axis(t_vec3 v, t_vec3 axis)
 	return (vec_sub(v, vec_scale(axis, vec_dot(v, axis))));
 }
 
-/* Roots of a t^2 + b t + c = 0 with t[0] <= t[1]; false if none */
+/*
+** Roots of a t^2 + b t + c = 0 with t[0] <= t[1]; false if none.
+** a == 0 only for a ray exactly parallel to the axis: not EPSILON,
+** a ray just slightly tilted has a tiny a but still hits the side.
+*/
 static bool	solve_quadratic(double a, double b, double c, double t[2])
 {
 	double	disc;
 
-	if (a < EPSILON)
+	if (a == 0.0)
 		return (false);
 	disc = b * b - 4 * a * c;
 	if (disc < 0)

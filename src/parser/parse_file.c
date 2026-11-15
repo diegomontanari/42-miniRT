@@ -30,7 +30,7 @@ static bool	has_rt_extension(const char *path)
 	return (len > 3 && ft_strcmp(path + len - 3, ".rt") == 0);
 }
 
-/* Split each line into words and give it to parse_line */
+/* Split each line into words (\r too: Windows files) for parse_line */
 static bool	parse_lines(char **lines, t_scene *scene)
 {
 	char	**words;
@@ -43,7 +43,7 @@ static bool	parse_lines(char **lines, t_scene *scene)
 	ok = true;
 	while (ok && lines[i])
 	{
-		words = ft_split(lines[i], " \t");
+		words = ft_split(lines[i], " \t\r");
 		if (!words)
 			return (parse_error("malloc failed"));
 		if (words[0])

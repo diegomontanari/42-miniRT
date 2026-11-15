@@ -76,6 +76,8 @@ int	main(void)
 				vec_new(0, 0, 1)), 2, -1);
 	err += check("open top, sees inner wall", ray(vec_new(0, 3, -1.5),
 				vec_new(0, -1, 1)), INFINITY, sqrt(2) * 2.5);
+	err += check("almost parallel to axis", ray(vec_new(1.01, -2, 0),
+				vec_new(-0.005, 0.9999875, 0)), INFINITY, 2);
 	err += tilted_test();
 	printf("%d test falliti\n", err);
 	return (err != 0);
